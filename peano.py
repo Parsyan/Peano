@@ -26,38 +26,47 @@ nine = sequent(eight)
 
 
 class PeanoNumber:
-    number = []
+    log = False
+    number: list[str] = []
 
     def __init__(self, num):
+        if not isinstance(num, str):
+            raise SyntaxError(" Your number must be in str ")
+
         if num == "0":
             self.number = zero
-        if num == "1":
+        elif num == "1":
             self.number = one
-        if num == "2":
+        elif num == "2":
             self.number = two
-        if num == "3":
+        elif num == "3":
             self.number = three
-        if num == "4":
+        elif num == "4":
             self.number = four
-        if num == "5":
+        elif num == "5":
             self.number = five
-        if num == "6":
+        elif num == "6":
             self.number = six
-        if num == "7":
+        elif num == "7":
             self.number = seven
-        if num == "8":
+        elif num == "8":
             self.number = eight
-        if num == "9":
+        elif num == "9":
             self.number = nine
+        else:
+            raise Exception(" Type a number  < 10")
 
-    def __init__(self, number_peano):
-        self.number = number_peano
+        self.number = self.number.copy()
 
     def sum(self, additive):
-        try:
-            del additive[additive.index("զրոյ")]
-        except ValueError as e:
-            pass
+
+        if isinstance(additive, PeanoNumber):
+            additive = additive.number.copy()
+
+        additive.pop(additive.index("զրոյ"))
+
+        if self.log:
+            print(" Starting Sum ")
 
         for i in additive:
             self.number.insert(0, i)
@@ -66,14 +75,12 @@ class PeanoNumber:
 
     def diff(self, number_peano):
 
-        try:
-            del number_peano[number_peano.index("զրոյ")]
-        except ValueError as e:
-            pass
-        try:
-            del self.number[self.number.index("զրոյ")]
-        except ValueError as e:
-            pass
+        if isinstance(number_peano, PeanoNumber):
+            number_peano = number_peano.number.copy()
+
+        number_peano.pop(number_peano.index("զրոյ"))
+        self.number.pop(self.number.index("զրոյ"))
+
 
         if len(self.number) > len(number_peano):  # TODO check on Vahagn's lesson check operator
 
@@ -94,6 +101,10 @@ class PeanoNumber:
         return self.number
 
     def multiply(self, number_peano):
+
+        if isinstance(number_peano, PeanoNumber):
+            number_peano = number_peano.number
+
         num_mult = self.number.copy()
         number_peano.pop()
         self.number = []
@@ -105,7 +116,11 @@ class PeanoNumber:
         return self.number
 
     def integer_division(self, number_peano):
-        quotient = PeanoNumber(zero)
+
+        if isinstance(number_peano, PeanoNumber):
+            number_peano = number_peano.number
+
+        quotient = PeanoNumber("0")
 
         while len(self.number) > len(number_peano):
             self.diff(number_peano)
@@ -116,6 +131,10 @@ class PeanoNumber:
         return quotient
 
     def division_with_remainder(self, number_peano):
+
+        if isinstance(number_peano, PeanoNumber):
+            number_peano = number_peano.number
+
         quotient = PeanoNumber(zero)
 
         while len(self.number) > len(number_peano):
@@ -136,10 +155,10 @@ class PeanoNumber:
 #     result.insert(0, i)
 # return result
 
-a = PeanoNumber(five)
-
+a = PeanoNumber(input(" Input a number "))
+b = PeanoNumber(input(" Input a number "))
 print(a)
-print( " integer division " )
-print(two)
+print(" integer division ")
+print(b)
 print(" = ")
-print(a.integer_division(two))
+print(a.diff(b))
