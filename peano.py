@@ -4,66 +4,48 @@ def sequent(number):
     return seq_number
 
 
-zero = ["զրոյ"]
+zero : list[str] = ["զրոյ"]
 
-one = sequent(zero)
+one : list[str] = sequent(zero)
 
-two = sequent(one)
+two : list[str] = sequent(one)
 
-three = sequent(two)
+three : list[str] = sequent(two)
 
-four = sequent(three)
+four : list[str] = sequent(three)
 
-five = sequent(four)
+five : list[str] = sequent(four)
 
-six = sequent(five)
+six : list[str] = sequent(five)
 
-seven = sequent(six)
+seven : list[str] = sequent(six)
 
-eight = sequent(seven)
+eight : list[str] = sequent(seven)
 
-nine = sequent(eight)
+nine : list[str] = sequent(eight)
+
+
+
+# def str_to_int(str_num : str):
+#     number = []
+#     for i in str_num:
+#
+#     pass
 
 
 class PeanoNumber:
     log = False
     number: list[str] = []
 
-    def __init__(self, num):
-        if not isinstance(num, str):
-            raise SyntaxError(" Your number must be in str ")
-
-        if num == "0":
-            self.number = zero
-        elif num == "1":
-            self.number = one
-        elif num == "2":
-            self.number = two
-        elif num == "3":
-            self.number = three
-        elif num == "4":
-            self.number = four
-        elif num == "5":
-            self.number = five
-        elif num == "6":
-            self.number = six
-        elif num == "7":
-            self.number = seven
-        elif num == "8":
-            self.number = eight
-        elif num == "9":
-            self.number = nine
-        else:
-            raise Exception(" Type a number  < 10")
-
-        self.number = self.number.copy()
+    def __init__(self, number: list[str]):
+        self.number = number.copy()
 
     def sum(self, additive):
 
         if isinstance(additive, PeanoNumber):
             additive = additive.number.copy()
-
-        additive.pop(additive.index("զրոյ"))
+        if "զրոյ" in additive:
+            additive.pop(additive.index("զրոյ"))
 
         if self.log:
             print(" Starting Sum ")
@@ -146,19 +128,106 @@ class PeanoNumber:
     def __str__(self):
         return f"{self.number}"
 
+    class PeanoNumberConverter:
 
-# def sum_peano_numbers(first_num_peano, second_num_peano):
-# result = first_num_peano.copy()
+        def str_to_int(self, str_num: str):
+            ten = nine.copy()
+            ten.insert(0, "յաջորդ")
+
+            int_number = PeanoNumber(zero)
+
+            for i in range(len(str_num)):
+                int_number.sum(self.check_digit(str_num[i]))
+
+                if not i >= (len(str_num) - 1):
+                    int_number.multiply(ten)
+
+            return int_number.number.copy()
+
+        @staticmethod
+        def check_digit(str_num: str):
+            number = []
+
+            if not len(str_num) == 1:
+                raise Exception(" Program can't work with input symbols or number than 9 ")
+            if str_num == "0":
+                number = zero
+            elif str_num == "1":
+                number = one
+            elif str_num == "2":
+                number = two
+            elif str_num == "3":
+                number = three
+            elif str_num == "4":
+                number = four
+            elif str_num == "5":
+                number = five
+            elif str_num == "6":
+                number = six
+            elif str_num == "7":
+                number = seven
+            elif str_num == "8":
+                number = eight
+            elif str_num == "9":
+                number = nine
+            else:
+                raise Exception(" Type a number  < 10")
+
+            return number.copy()
+
+# def str_to_int(str_num: str):
+#     ten = nine.copy()
+#     ten.insert(0, "յաջորդ")
 #
-# second_num_peano.pop()
-# for i in second_num_peano:
-#     result.insert(0, i)
-# return result
+#     int_number = PeanoNumber(zero)
+#
+#
+#
+#     for i in range(len(str_num)):
+#         int_number.sum(check_digit(str_num[i]))
+#
+#         if not i >= (len(str_num) - 1):
+#             int_number.multiply(ten)
+#
+#     return int_number.number.copy()
+#
+# def check_digit(str_num: str):
+#     number = []
+#
+#     if not len(str_num) == 1:
+#         raise Exception(" Program can't work with input symbols or number than 9 ")
+#     if str_num == "0":
+#         number = zero
+#     elif str_num == "1":
+#         number = one
+#     elif str_num == "2":
+#         number = two
+#     elif str_num == "3":
+#         number = three
+#     elif str_num == "4":
+#         number = four
+#     elif str_num == "5":
+#         number = five
+#     elif str_num == "6":
+#         number = six
+#     elif str_num == "7":
+#         number = seven
+#     elif str_num == "8":
+#         number = eight
+#     elif str_num == "9":
+#         number = nine
+#     else:
+#         raise Exception(" Type a number  < 10")
+#
+#     return number.copy()
+peano_converter = PeanoNumber.PeanoNumberConverter()
 
-a = PeanoNumber(input(" Input a number "))
-b = PeanoNumber(input(" Input a number "))
+a = PeanoNumber(peano_converter.str_to_int(input(" Input a number ")))
+
+
+# b = PeanoNumber(input(" Input a number "))
 print(a)
-print(" integer division ")
-print(b)
-print(" = ")
-print(a.diff(b))
+# print(" integer division ")
+# print(b)
+# print(" = ")
+# print(a.multiply(b))
