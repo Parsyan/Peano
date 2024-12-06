@@ -117,73 +117,73 @@ class PeanoNumber:
 
         return self.number
 
-    def diff(self, number_peano):
+    def diff(self, removable):
 
-        if isinstance(number_peano, PeanoNumber):
-            number_peano = number_peano.number.copy()
-        if "զրոյ" in number_peano:
-            number_peano.pop(number_peano.index("զրոյ"))
+        if isinstance(removable, PeanoNumber):
+            removable = removable.number.copy()
+        if "զրոյ" in removable:
+            removable.pop(removable.index("զրոյ"))
         if "զրոյ" in self.number:
             self.number.pop(self.number.index("զրոյ"))
 
 
-        if len(self.number) > len(number_peano):  # TODO check on Vahagn's lesson check operator
+        if len(self.number) > len(removable):  # TODO check on Vahagn's lesson check operator
 
-            for i in number_peano:
+            for i in removable:
                 self.number.pop()
             self.number.append("զրոյ")
 
-        elif len(self.number) < len(number_peano):
+        elif len(self.number) < len(removable):
             raise Exception(" because num1 < num2 program can't calc ")
 
-        elif len(self.number) == len(number_peano):  # TODO check on Vahagn's lesson check operator
+        elif len(self.number) == len(removable):  # TODO check on Vahagn's lesson check operator
             self.number = ["զրոյ"]
 
         return self.number
 
-    def multiply(self, number_peano):
+    def multiply(self, multiple):
 
-        if isinstance(number_peano, PeanoNumber):
-            number_peano = number_peano.number
+        if isinstance(multiple, PeanoNumber):
+            multiple = multiple.number
 
         num_mult = self.number.copy()
-        number_peano.pop()
+        multiple.pop()
         self.number = []
 
-        for i in number_peano:
+        for i in multiple:
             self.sum(num_mult)
 
         self.number.append("զրոյ")
         return self.number
 
-    def integer_division(self, number_peano):
+    def integer_division(self, divisor):
 
-        if isinstance(number_peano, PeanoNumber):
-            number_peano = number_peano.number
+        if isinstance(divisor, PeanoNumber):
+            divisor = divisor.number
 
         quotient = PeanoNumber(zero)
-        if len(self.number) < len(number_peano):
+        if len(self.number) < len(divisor):
             raise Exception(" It's impossible calc ")
-        if self.number == zero.copy() or number_peano == zero.copy():
+        if self.number == zero.copy() or divisor == zero.copy():
             raise Exception(" Zero's impossible calc ")
 
-        while len(self.number) > len(number_peano):
-            self.diff(number_peano)
+        while len(self.number) > len(divisor):
+            self.diff(divisor)
             quotient.sum(one)
 
         self.number = quotient.number.copy()
 
         return quotient
 
-    def division_with_remainder(self, number_peano):
+    def division_with_remainder(self, divisor):
 
-        if isinstance(number_peano, PeanoNumber):
-            number_peano = number_peano.number
+        if isinstance(divisor, PeanoNumber):
+            divisor = divisor.number
 
         quotient = PeanoNumber(zero)
 
-        while len(self.number) > len(number_peano):
-            self.diff(number_peano)
+        while len(self.number) > len(divisor):
+            self.diff(divisor)
             quotient.sum(one)
 
         return self.number
@@ -199,6 +199,8 @@ class IntegerNumber(PeanoNumber):
 
     def __init__(self, number: list[str]):
         self.number = number.copy()
+
+
 
     def sum(self, additive):
 
@@ -281,84 +283,84 @@ class IntegerNumber(PeanoNumber):
 
         return self.number
 
-    def diff(self, number_peano):
+    def diff(self, removable):
 
-        if isinstance(number_peano, PeanoNumber):
-            number_peano = number_peano.number.copy()
+        if isinstance(removable, PeanoNumber):
+            removable = removable.number.copy()
 
-        if "զրոյ" in number_peano:
-            number_peano.pop(number_peano.index("զրոյ"))
+        if "զրոյ" in removable:
+            removable.pop(removable.index("զրոյ"))
         if "զրոյ" in self.number:
             self.number.pop(self.number.index("զրոյ"))
 
-        if not "բացասական" in self.number and not "բացասական" in number_peano:
+        if not "բացասական" in self.number and not "բացասական" in removable:
 
-            if len(self.number) > len(number_peano):  # TODO check on Vahagn's lesson check operator
+            if len(self.number) > len(removable):  # TODO check on Vahagn's lesson check operator
 
-                for i in number_peano:
+                for i in removable:
                     self.number.pop()
                 self.number.append("զրոյ")
 
-            elif len(self.number) < len(number_peano):  # TODO check on Vahagn's lesson check operator
+            elif len(self.number) < len(removable):  # TODO check on Vahagn's lesson check operator
                 minus = "բացասական"
                 for i in self.number:
-                    number_peano.pop()
-                self.number = number_peano.copy()
+                    removable.pop()
+                self.number = removable.copy()
 
                 self.number.insert(0, minus)
                 self.number.append("զրոյ")
 
 
-            elif len(self.number) == len(number_peano):  # TODO check on Vahagn's lesson check operator
+            elif len(self.number) == len(removable):  # TODO check on Vahagn's lesson check operator
                 self.number = ["զրոյ"]
 
-        elif "բացասական" in self.number and "բացասական" in number_peano:
-            number_peano.pop(number_peano.index("բացասական"))
-            self.sum(number_peano)
+        elif "բացասական" in self.number and "բացասական" in removable:
+            removable.pop(removable.index("բացասական"))
+            self.sum(removable)
 
 
-        elif "բացասական" in self.number and not "բացասական" in number_peano:
+        elif "բացասական" in self.number and not "բացասական" in removable:
             self.number.pop(self.number.index("բացասական"))
 
             self.number.append("զրոյ")
 
-            self.sum(number_peano)
+            self.sum(removable)
             self.number.insert(0, "բացասական")
 
 
-        elif not "բացասական" in self.number and "բացասական" in number_peano:
-            number_peano.pop(number_peano.index("բացասական"))
+        elif not "բացասական" in self.number and "բացասական" in removable:
+            removable.pop(removable.index("բացասական"))
 
             self.number.append("զրոյ")
 
-            self.sum(number_peano)
+            self.sum(removable)
 
 
         return self.number
 
-    def multiply(self, number_peano):
+    def multiply(self, multiple):
 
-        if isinstance(number_peano, PeanoNumber):
-            number_peano = number_peano.number
+        if isinstance(multiple, PeanoNumber):
+            multiple = multiple.number
 
-        if "բացասական" in self.number and "բացասական" in number_peano:
+        if "բացասական" in self.number and "բացասական" in multiple:
             self.number.pop(self.number.index("բացասական"))
-            number_peano.pop(number_peano.index("բացասական"))
+            multiple.pop(multiple.index("բացասական"))
             peano_num = PeanoNumber(self.number.copy())
-            peano_num.multiply(number_peano)
+            peano_num.multiply(multiple)
             self.number = peano_num.number.copy()
-        elif not "բացասական" in self.number and not "բացասական" in number_peano:
+        elif not "բացասական" in self.number and not "բացասական" in multiple:
             peano_num = PeanoNumber(self.number.copy())
-            peano_num.multiply(number_peano)
+            peano_num.multiply(multiple)
             self.number = peano_num.number.copy()
         else:
             if "բացասական" in self.number:
                 self.number.pop(self.number.index("բացասական"))
-            if "բացասական" in number_peano:
-                number_peano.pop(number_peano.index("բացասական"))
+            if "բացասական" in multiple:
+                multiple.pop(multiple.index("բացասական"))
 
             peano_num = PeanoNumber(self.number.copy())
-            peano_num.multiply(number_peano)
+            peano_num.multiply(multiple)
             self.number = peano_num.number.copy()
             self.number.insert(0, "բացասական")
 
@@ -366,51 +368,51 @@ class IntegerNumber(PeanoNumber):
 
         return self.number
 
-    def integer_division(self, number_peano):
+    def integer_division(self, divisor):
 
 
-        if isinstance(number_peano, PeanoNumber):
-            number_peano = number_peano.number
+        if isinstance(divisor, PeanoNumber):
+            divisor = divisor.number
 
-        if "բացասական" in self.number and "բացասական" in number_peano:
+        if "բացասական" in self.number and "բացասական" in divisor:
             self.number.pop(self.number.index("բացասական"))
-            number_peano.pop(number_peano.index("բացասական"))
+            divisor.pop(divisor.index("բացասական"))
             peano_number = PeanoNumber(self.number.copy())
-            peano_number.integer_division(number_peano)
+            peano_number.integer_division(divisor)
             self.number = peano_number.number.copy()
 
-        elif not "բացասական" in self.number and not "բացասական" in number_peano:
+        elif not "բացասական" in self.number and not "բացասական" in divisor:
             peano_number = PeanoNumber(self.number.copy())
-            peano_number.integer_division(number_peano)
+            peano_number.integer_division(divisor)
             self.number = peano_number.number.copy()
 
         else:
             if "բացասական" in self.number:
                 self.number.pop(self.number.index("բացասական"))
-            if "բացասական" in number_peano:
-                number_peano.pop(number_peano.index("բացասական"))
+            if "բացասական" in divisor:
+                divisor.pop(divisor.index("բացասական"))
 
-            self.integer_division(number_peano)
+            self.integer_division(divisor)
             self.number.insert(0, "բացասական")
 
         return self.number
 
-    def division_with_remainder(self, number_peano):
+    def division_with_remainder(self, divisor):
 
-        if isinstance(number_peano, PeanoNumber):
-            number_peano = number_peano.number
+        if isinstance(divisor, PeanoNumber):
+            divisor = divisor.number
         isMinus = False
 
         if "բացասական" in self.number:
             self.number.pop(self.number.index("բացասական"))
             isMinus = True
 
-        if "բացասական" in number_peano:
-            number_peano.pop(number_peano.index("բացասական"))
+        if "բացասական" in divisor:
+            divisor.pop(divisor.index("բացասական"))
 
 
         peano_number = PeanoNumber(self.number.copy())
-        peano_number.division_with_remainder(number_peano)
+        peano_number.division_with_remainder(divisor)
 
         self.number = peano_number.number.copy()
 

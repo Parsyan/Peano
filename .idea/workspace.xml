@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22cf16b1-62a0-4ca5-95ea-cefbb5eb004c" name="Changes" comment="str number converter : &quot;154&quot; to PeanoNumber with inner class PeanoNumberConverter in PeanoNumber class.&#10;Work done !">
+    <list default="true" id="22cf16b1-62a0-4ca5-95ea-cefbb5eb004c" name="Changes" comment="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/peano.py" beforeDir="false" afterPath="$PROJECT_DIR$/peano.py" afterDir="false" />
     </list>
@@ -100,7 +100,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733387352633</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0">
+      <option name="closed" value="true" />
+      <created>1733499912197</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733499912197</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,7 +127,8 @@
     <MESSAGE value="Adding functions : sum, diff, multiply, integer division and division with remainder **" />
     <MESSAGE value="Adding fix PeanoNumber class for function works" />
     <MESSAGE value="str number converter : &quot;154&quot; to PeanoNumber with inner class PeanoNumberConverter in PeanoNumber class.&#10;Work done !" />
-    <option name="LAST_COMMIT_MESSAGE" value="str number converter : &quot;154&quot; to PeanoNumber with inner class PeanoNumberConverter in PeanoNumber class.&#10;Work done !" />
+    <MESSAGE value="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0" />
+    <option name="LAST_COMMIT_MESSAGE" value="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
