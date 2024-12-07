@@ -435,6 +435,9 @@ class PeanoFraction(PeanoNumber):
 
     def sum(self, additive): # TODO Reorganization your idea and made sum of PeanoFraction :: last problem !! global_denominator and denominator of self equals
 
+        if self.numerator.number == additive.numerator.number and self.numerator.number == zero:
+            return zero.copy()
+
         if self.numerator.number == zero:
             return additive
 
@@ -457,8 +460,11 @@ class PeanoFraction(PeanoNumber):
         additive.numerator.multiply(global_denominator.integer_division(additive.denominator))
         # >>>
 
-        # result <<<
+        # sum <<<
         self.numerator.sum(additive.numerator)
+        # >>>
+
+        # result <<<
 
         nzero = zero.copy()
         nzero.insert(0, "բացասական")
@@ -466,6 +472,56 @@ class PeanoFraction(PeanoNumber):
         if self.numerator.number == zero or self.numerator.number == nzero:
             return zero.copy()
 
+        self.denominator = copy.deepcopy(global_denominator)
+        # >>>
+
+        return self
+
+
+    def diff(self, additive): # TODO Reorganization your idea and made sum of PeanoFraction :: last problem !! global_denominator and denominator of self equals
+
+        if self.numerator.number == additive.numerator.number and self.numerator.number == zero:
+            return zero.copy()
+
+        if self.numerator.number == zero:
+            if "բացասական" in additive.numerator.number:
+                additive.numerator.number.pop(additive.numerator.index("բացասական"))
+                return additive
+            else:
+                additive.numerator.number.insert(0, "բացասական")
+                return additive
+
+
+        if not isinstance(additive, PeanoFraction):
+            raise Exception(" It is not Fraction for calc ")
+        global_denominator: PeanoNumber
+
+        # This is calculating global denominator code <<<
+
+        if self.denominator.division_with_remainder(additive.denominator) == zero:
+            global_denominator = deepcopy(self.denominator)
+        elif additive.denominator.division_with_remainder(self.denominator) == zero:
+            global_denominator = deepcopy(additive.denominator)
+        else:
+            global_denominator = PeanoNumber(self.denominator.multiply(additive.denominator).copy())
+        # >>>
+
+        # calculating numerators for sum  <<<
+        self.numerator.multiply(global_denominator.integer_division(self.denominator))
+        additive.numerator.multiply(global_denominator.integer_division(additive.denominator))
+        # >>>
+
+        # diff <<<
+        self.numerator.diff(additive.numerator)
+        # >>>
+
+        nzero = zero.copy()
+        nzero.insert(0, "բացասական")
+
+        if self.numerator.number == zero or self.numerator.number == nzero:
+            return zero.copy()
+
+        # result <<<
         self.denominator = copy.deepcopy(global_denominator)
         # >>>
 
@@ -486,4 +542,4 @@ b = PeanoFraction(
 
 print(a)
 
-print(a.sum(b))
+print(a.diff(b))

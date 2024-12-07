@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22cf16b1-62a0-4ca5-95ea-cefbb5eb004c" name="Changes" comment="Method variables names changing.">
+    <list default="true" id="22cf16b1-62a0-4ca5-95ea-cefbb5eb004c" name="Changes" comment="PeanoFraction class creating and sum of Fraction realizing.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/peano.py" beforeDir="false" afterPath="$PROJECT_DIR$/peano.py" afterDir="false" />
     </list>
@@ -116,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733501067791</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="PeanoFraction class creating and sum of Fraction realizing.">
+      <option name="closed" value="true" />
+      <created>1733569531426</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733569531426</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,7 +145,8 @@
     <MESSAGE value="str number converter : &quot;154&quot; to PeanoNumber with inner class PeanoNumberConverter in PeanoNumber class.&#10;Work done !" />
     <MESSAGE value="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0" />
     <MESSAGE value="Method variables names changing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Method variables names changing." />
+    <MESSAGE value="PeanoFraction class creating and sum of Fraction realizing." />
+    <option name="LAST_COMMIT_MESSAGE" value="PeanoFraction class creating and sum of Fraction realizing." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -154,27 +163,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peano.py</url>
-          <line>444</line>
+          <line>454</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peano.py</url>
-          <line>453</line>
+          <line>463</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peano.py</url>
-          <line>449</line>
+          <line>459</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peano.py</url>
-          <line>448</line>
+          <line>458</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peano.py</url>
-          <line>439</line>
+          <line>449</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -184,7 +193,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peano.py</url>
-          <line>432</line>
+          <line>435</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
