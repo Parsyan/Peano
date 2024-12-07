@@ -346,7 +346,7 @@ class IntegerNumber(PeanoNumber):
             multiple.pop(multiple.index("բացասական"))
             peano_num = PeanoNumber(self.number.copy())
             peano_num = peano_num.multiply(multiple)
-            self.number = peano_num.number.copy()
+            self.number = peano_num.copy()
         elif not "բացասական" in self.number and not "բացասական" in multiple:
             peano_num = PeanoNumber(self.number.copy())
             peano_num = peano_num.multiply(multiple)
@@ -477,7 +477,6 @@ class PeanoFraction(PeanoNumber):
 
         return self
 
-
     def diff(self, additive): # TODO Reorganization your idea and made sum of PeanoFraction :: last problem !! global_denominator and denominator of self equals
 
         if self.numerator.number == additive.numerator.number and self.numerator.number == zero:
@@ -527,6 +526,35 @@ class PeanoFraction(PeanoNumber):
 
         return self
 
+    def multiply(self, multiple):
+        if self.numerator.number == zero or multiple.numerator.number == zero:
+            return zero.copy()
+
+        if not isinstance(multiple, PeanoFraction):
+            raise Exception(" It is not Fraction for calc ")
+
+        self.numerator = self.numerator.multiply(multiple.numerator)
+        self.denominator = self.denominator.multiply(multiple.denominator)
+
+        return self
+
+    def division(self, divisor):
+        if self.numerator.number == zero or divisor.numerator.number == zero:
+            return zero.copy()
+
+        divisor_numerator = copy.deepcopy(divisor.numerator)
+
+        divisor.numerator = copy.deepcopy(divisor.denominator)
+        if "բացասական" in divisor_numerator.number:
+            divisor_numerator.number.pop(divisor_numerator.number.index("բացասական"))
+            divisor.numerator.number.insert(0, "բացասական")
+
+        divisor.denominator = copy.deepcopy(divisor_numerator)
+
+        self.numerator = self.numerator.multiply(divisor.numerator)
+        self.denominator = self.denominator.multiply(divisor.denominator)
+
+        return self
 
 a = PeanoFraction(
                             IntegerNumber(peano_converter.str_to_int(input(" Input a number "))),
@@ -542,4 +570,4 @@ b = PeanoFraction(
 
 print(a)
 
-print(a.diff(b))
+print(a.division(b))

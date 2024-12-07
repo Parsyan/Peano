@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22cf16b1-62a0-4ca5-95ea-cefbb5eb004c" name="Changes" comment="PeanoFraction class creating and sum of Fraction realizing.">
+    <list default="true" id="22cf16b1-62a0-4ca5-95ea-cefbb5eb004c" name="Changes" comment="Diff function of Fraction realizing.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/peano.py" beforeDir="false" afterPath="$PROJECT_DIR$/peano.py" afterDir="false" />
     </list>
@@ -46,7 +46,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.peano.executor": "Run",
+    "Python.peano.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
@@ -124,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733569531426</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Diff function of Fraction realizing.">
+      <option name="closed" value="true" />
+      <created>1733570462217</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733570462217</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,7 +154,8 @@
     <MESSAGE value="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0" />
     <MESSAGE value="Method variables names changing." />
     <MESSAGE value="PeanoFraction class creating and sum of Fraction realizing." />
-    <option name="LAST_COMMIT_MESSAGE" value="PeanoFraction class creating and sum of Fraction realizing." />
+    <MESSAGE value="Diff function of Fraction realizing." />
+    <option name="LAST_COMMIT_MESSAGE" value="Diff function of Fraction realizing." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -205,6 +214,36 @@
           <url>file://$PROJECT_DIR$/peano.py</url>
           <line>153</line>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>535</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>536</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>550</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>551</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>546</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>548</line>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
