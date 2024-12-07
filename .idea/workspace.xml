@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22cf16b1-62a0-4ca5-95ea-cefbb5eb004c" name="Changes" comment="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0">
+    <list default="true" id="22cf16b1-62a0-4ca5-95ea-cefbb5eb004c" name="Changes" comment="Method variables names changing.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/peano.py" beforeDir="false" afterPath="$PROJECT_DIR$/peano.py" afterDir="false" />
     </list>
@@ -108,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733499912197</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Method variables names changing.">
+      <option name="closed" value="true" />
+      <created>1733501067791</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733501067791</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,15 +136,66 @@
     <MESSAGE value="Adding fix PeanoNumber class for function works" />
     <MESSAGE value="str number converter : &quot;154&quot; to PeanoNumber with inner class PeanoNumberConverter in PeanoNumber class.&#10;Work done !" />
     <MESSAGE value="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0" />
-    <option name="LAST_COMMIT_MESSAGE" value="creating IntegerPeanoNumber class which extends PeanoNumber class and realizing sum, diff, multiply, integer_division and division_with_remainder. And PeanoNumber don't pass number &lt; 0" />
+    <MESSAGE value="Method variables names changing." />
+    <option name="LAST_COMMIT_MESSAGE" value="Method variables names changing." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peano.py</url>
-          <line>374</line>
+          <line>371</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>186</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>444</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>453</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>449</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>448</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>439</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>175</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>432</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>204</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/peano.py</url>
+          <line>153</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

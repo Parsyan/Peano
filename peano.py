@@ -1,3 +1,5 @@
+import copy
+from copy import deepcopy
 
 
 def sequent(number):
@@ -6,33 +8,26 @@ def sequent(number):
     return seq_number
 
 
-zero : list[str] = ["զրոյ"]
+zero: list[str] = ["զրոյ"]
 
-one : list[str] = sequent(zero)
+one: list[str] = sequent(zero)
 
-two : list[str] = sequent(one)
+two: list[str] = sequent(one)
 
-three : list[str] = sequent(two)
+three: list[str] = sequent(two)
 
-four : list[str] = sequent(three)
+four: list[str] = sequent(three)
 
-five : list[str] = sequent(four)
+five: list[str] = sequent(four)
 
-six : list[str] = sequent(five)
+six: list[str] = sequent(five)
 
-seven : list[str] = sequent(six)
+seven: list[str] = sequent(six)
 
-eight : list[str] = sequent(seven)
+eight: list[str] = sequent(seven)
 
-nine : list[str] = sequent(eight)
+nine: list[str] = sequent(eight)
 
-
-
-# def str_to_int(str_num : str):
-#     number = []
-#     for i in str_num:
-#
-#     pass
 
 class PeanoNumberConverter:
 
@@ -43,18 +38,18 @@ class PeanoNumberConverter:
         minus = "բացասական"
 
         int_peano_number = PeanoNumber(zero)
-        isminus = False
+        is_minus = False
         if "-" in str_num:
-            isminus = True
+            is_minus = True
             str_num = str_num.replace("-", "")
 
         for i in range(len(str_num)):
             int_peano_number.sum(self.check_digit(str_num[i]))
 
             if not i >= (len(str_num) - 1):
-                int_peano_number.multiply(ten)
+                int_peano_number.number = int_peano_number.multiply(ten)
 
-        if isminus:
+        if is_minus:
             int_peano_number.number.insert(0, minus)
 
         return int_peano_number.number.copy()
@@ -126,7 +121,6 @@ class PeanoNumber:
         if "զրոյ" in self.number:
             self.number.pop(self.number.index("զրոյ"))
 
-
         if len(self.number) > len(removable):  # TODO check on Vahagn's lesson check operator
 
             for i in removable:
@@ -144,69 +138,74 @@ class PeanoNumber:
     def multiply(self, multiple):
 
         if isinstance(multiple, PeanoNumber):
-            multiple = multiple.number
+            multiple = multiple.number.copy()
 
         num_mult = self.number.copy()
         multiple.pop()
-        self.number = []
+        number_peano_one = PeanoNumber(zero.copy())
 
         for i in multiple:
-            self.sum(num_mult)
+            number_peano_one.sum(num_mult)
+        if not "զրոյ" in number_peano_one.number:
+            number_peano_one.number.append("զրոյ")
 
-        self.number.append("զրոյ")
-        return self.number
+        return number_peano_one.number.copy()
 
     def integer_division(self, divisor):
 
         if isinstance(divisor, PeanoNumber):
-            divisor = divisor.number
+            divisor = divisor.number.copy()
 
         quotient = PeanoNumber(zero)
         if len(self.number) < len(divisor):
             raise Exception(" It's impossible calc ")
         if self.number == zero.copy() or divisor == zero.copy():
             raise Exception(" Zero's impossible calc ")
+        if self.number == divisor:
+            return one.copy()
 
-        while len(self.number) > len(divisor):
-            self.diff(divisor)
+        number_one_peano = copy.deepcopy(self)
+
+        while len(number_one_peano.number) > len(divisor):
+            number_one_peano.diff(divisor)
             quotient.sum(one)
 
-        self.number = quotient.number.copy()
 
         return quotient
 
     def division_with_remainder(self, divisor):
 
         if isinstance(divisor, PeanoNumber):
-            divisor = divisor.number
+            divisor = divisor.number.copy()
 
-        quotient = PeanoNumber(zero)
 
-        while len(self.number) > len(divisor):
-            self.diff(divisor)
-            quotient.sum(one)
 
-        return self.number
+        number_one_peano = copy.deepcopy(self)
+        if len(number_one_peano.number) == len(divisor):
+            return zero.copy()
+
+        while len(number_one_peano.number) > len(divisor):
+            number_one_peano.diff(divisor)
+            if "զրոյ" in number_one_peano.number:
+                number_one_peano.number.pop(number_one_peano.number.index("զրոյ"))
+
+        number_one_peano.number.append("զրոյ")
+        return number_one_peano
 
     def __str__(self):
         return f"{self.number}"
 
 
-
 class IntegerNumber(PeanoNumber):
     number: list[str] = []
 
-
     def __init__(self, number: list[str]):
         self.number = number.copy()
-
-
 
     def sum(self, additive):
 
         if isinstance(additive, PeanoNumber):
             additive = additive.number.copy()
-
 
         if "զրոյ" in additive:
             additive.pop(additive.index("զրոյ"))
@@ -220,22 +219,23 @@ class IntegerNumber(PeanoNumber):
         elif "բացասական" in self.number and "բացասական" in additive:
             self.number.pop(self.number.index("բացասական"))
             additive.pop(additive.index("բացասական"))
-            super().number = self.number.copy()
+
+            number_peano_one = PeanoNumber(self.number.copy())
+
             for i in additive:
-                super().number.insert(0, i)
-            self.number = super().number.copy()
+                number_peano_one.number.insert(0, i)
+            self.number = number_peano_one.number.copy()
 
             self.number.insert(0, minus)
 
         else:
 
-            if len(self.number) > len(additive): # TODO check on Vahagn's lesson check operator
+            if len(self.number) > len(additive):  # TODO check on Vahagn's lesson check operator
 
                 if "բացասական" in self.number:
                     self.number.pop(self.number.index("բացասական"))
 
                     peano_num = PeanoNumber(self.number.copy())
-
 
                     peano_num.diff(additive)
                     self.number = peano_num.number.copy()
@@ -255,14 +255,15 @@ class IntegerNumber(PeanoNumber):
 
             elif len(self.number) < len(additive):  # TODO check on Vahagn's lesson check operator
 
-                first_num_is_minus : bool
+                first_num_is_minus: bool
 
                 if "բացասական" in additive:
                     additive.pop(additive.index("բացասական"))
                     first_num_is_minus = True
 
                 else:
-                    additive.pop(additive.index("բացասական"))
+                    if "բացասական" in additive:
+                        additive.pop(additive.index("բացասական"))
                     first_num_is_minus = False
 
                 additive.append("զրոյ")
@@ -278,8 +279,6 @@ class IntegerNumber(PeanoNumber):
 
             elif len(self.number) == len(additive):  # TODO check on Vahagn's lesson check operator
                 self.number = ["զրոյ"]
-
-
 
         return self.number
 
@@ -335,7 +334,6 @@ class IntegerNumber(PeanoNumber):
 
             self.sum(removable)
 
-
         return self.number
 
     def multiply(self, multiple):
@@ -347,12 +345,12 @@ class IntegerNumber(PeanoNumber):
             self.number.pop(self.number.index("բացասական"))
             multiple.pop(multiple.index("բացասական"))
             peano_num = PeanoNumber(self.number.copy())
-            peano_num.multiply(multiple)
+            peano_num = peano_num.multiply(multiple)
             self.number = peano_num.number.copy()
         elif not "բացասական" in self.number and not "բացասական" in multiple:
             peano_num = PeanoNumber(self.number.copy())
-            peano_num.multiply(multiple)
-            self.number = peano_num.number.copy()
+            peano_num = peano_num.multiply(multiple)
+            self.number = peano_num.copy()
         else:
             if "բացասական" in self.number:
                 self.number.pop(self.number.index("բացասական"))
@@ -360,16 +358,13 @@ class IntegerNumber(PeanoNumber):
                 multiple.pop(multiple.index("բացասական"))
 
             peano_num = PeanoNumber(self.number.copy())
-            peano_num.multiply(multiple)
-            self.number = peano_num.number.copy()
+            peano_num = peano_num.multiply(multiple)
+            self.number = peano_num.copy()
             self.number.insert(0, "բացասական")
-
-
 
         return self.number
 
     def integer_division(self, divisor):
-
 
         if isinstance(divisor, PeanoNumber):
             divisor = divisor.number
@@ -378,7 +373,7 @@ class IntegerNumber(PeanoNumber):
             self.number.pop(self.number.index("բացասական"))
             divisor.pop(divisor.index("բացասական"))
             peano_number = PeanoNumber(self.number.copy())
-            peano_number.integer_division(divisor)
+            peano_number = copy.deepcopy(peano_number.integer_division(divisor))
             self.number = peano_number.number.copy()
 
         elif not "բացասական" in self.number and not "բացասական" in divisor:
@@ -401,39 +396,94 @@ class IntegerNumber(PeanoNumber):
 
         if isinstance(divisor, PeanoNumber):
             divisor = divisor.number
-        isMinus = False
+        is_minus = False
 
         if "բացասական" in self.number:
             self.number.pop(self.number.index("բացասական"))
-            isMinus = True
+            is_minus = True
 
         if "բացասական" in divisor:
             divisor.pop(divisor.index("բացասական"))
-
 
         peano_number = PeanoNumber(self.number.copy())
         peano_number.division_with_remainder(divisor)
 
         self.number = peano_number.number.copy()
 
-        if isMinus:
+        if is_minus:
             self.number.insert(0, "բացասական")
-
-
 
         return self.number
 
+
 peano_converter = PeanoNumberConverter()
 
-a = IntegerNumber(peano_converter.str_to_int(input(" Input a number ")))
-b = IntegerNumber(peano_converter.str_to_int(input(" Input a number ")))
+
+class PeanoFraction(PeanoNumber):
+    numerator: IntegerNumber
+    denominator: PeanoNumber
+
+    def __init__(self, numerator: IntegerNumber, denominator: PeanoNumber):
+        if denominator.number == zero:
+            raise Exception("Denominator of fraction cannot be zero")
+
+        self.numerator = numerator
+        self.denominator = denominator
+
+    def __str__(self):
+        return f"numerator : {self.numerator}/ denominator {self.denominator}"
+
+    def sum(self, additive): # TODO Reorganization your idea and made sum of PeanoFraction :: last problem !! global_denominator and denominator of self equals
+
+        if self.numerator.number == zero:
+            return additive
+
+        if not isinstance(additive, PeanoFraction):
+            raise Exception(" It is not Fraction for calc ")
+        global_denominator: PeanoNumber
+
+        # This is calculating global denominator code <<<
+
+        if self.denominator.division_with_remainder(additive.denominator) == zero:
+            global_denominator = deepcopy(self.denominator)
+        elif additive.denominator.division_with_remainder(self.denominator) == zero:
+            global_denominator = deepcopy(additive.denominator)
+        else:
+            global_denominator = PeanoNumber(self.denominator.multiply(additive.denominator).copy())
+        # >>>
+
+        # calculating numerators for sum  <<<
+        self.numerator.multiply(global_denominator.integer_division(self.denominator))
+        additive.numerator.multiply(global_denominator.integer_division(additive.denominator))
+        # >>>
+
+        # result <<<
+        self.numerator.sum(additive.numerator)
+
+        nzero = zero.copy()
+        nzero.insert(0, "բացասական")
+
+        if self.numerator.number == zero or self.numerator.number == nzero:
+            return zero.copy()
+
+        self.denominator = copy.deepcopy(global_denominator)
+        # >>>
+
+        return self
 
 
-# nfive = five.copy()
-# nfive.insert(0, "բացասական")
+a = PeanoFraction(
+                            IntegerNumber(peano_converter.str_to_int(input(" Input a number "))),
+                            PeanoNumber(peano_converter.str_to_int(input(" Input a number ")))
+                  )
+
+b = PeanoFraction(
+                           IntegerNumber(peano_converter.str_to_int(input(" Input a number "))),
+                           PeanoNumber(peano_converter.str_to_int(input(" Input a number ")))
+                  )
+# a = PeanoNumber(peano_converter.str_to_int(input(" Input a number ")))
+# b = PeanoNumber(peano_converter.str_to_int(input(" Input a number ")))
+
 print(a)
-print(a.division_with_remainder(b))
-# print(" integer division ")
-# print(b)
-# print(" = ")
-# print(a.multiply(b))
+
+print(a.sum(b))
