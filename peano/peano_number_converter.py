@@ -41,6 +41,7 @@ class PeanoNumberConverter:
     }
 
     def str_to_fraction(self, str_num : str):
+        str_num.split()
 
         fraction_mini = str_num.split("/")
         fraction = PeanoFraction(
@@ -51,6 +52,7 @@ class PeanoNumberConverter:
         return fraction
 
     def str_to_int(self, str_num: str):
+        str_num.split()
         ten = self.nums["9"].copy()
         ten.insert(0, "յաջորդ")
 
@@ -74,6 +76,8 @@ class PeanoNumberConverter:
         return copy.deepcopy(int_peano_number)
 
     def str_to_num_peano(self, str_num: str):
+        str_num.split()
+
         ten = self.nums["9"].copy()
         ten.insert(0, "յաջորդ")
 

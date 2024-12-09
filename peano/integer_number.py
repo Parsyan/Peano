@@ -257,6 +257,11 @@ class IntegerNumber(PeanoNumber):
         if isinstance(divisor, PeanoNumber):
             divisor = divisor.number
 
+        if "զրոյ" in self.number:
+            self.number.pop(self.number.index("զրոյ"))
+        if "զրոյ" in divisor:
+            divisor.pop(divisor.index("զրոյ"))
+
         if "բացասական" in self.number and "բացասական" in divisor:
             self.number.pop(self.number.index("բացասական"))
             divisor.pop(divisor.index("բացասական"))
@@ -266,8 +271,8 @@ class IntegerNumber(PeanoNumber):
 
         elif not "բացասական" in self.number and not "բացասական" in divisor:
             peano_number = PeanoNumber(self.number.copy())
-            peano_number.integer_division(divisor)
-            self.number = peano_number.number.copy()
+            peano_number = peano_number.integer_division(divisor)
+            self.number = peano_number.copy()
 
         else:
             if "բացասական" in self.number:
@@ -277,7 +282,8 @@ class IntegerNumber(PeanoNumber):
 
             self.integer_division(divisor)
             self.number.insert(0, "բացասական")
-
+        if not "զրոյ" in self.number:
+            self.number.append("զրոյ")
         return self.number
 
     def division_with_remainder(self, divisor):

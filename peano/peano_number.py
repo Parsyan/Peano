@@ -114,7 +114,7 @@ class PeanoNumber:
             quotient.sum(["յաջորդ", "զրոյ"])
 
 
-        return quotient
+        return quotient.number.copy()
 
     def division_with_remainder(self, divisor):
 
