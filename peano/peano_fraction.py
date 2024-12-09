@@ -5,6 +5,53 @@ from peano.peano_number import PeanoNumber
 
 from peano.integer_number import IntegerNumber
 
+"""
+
+    PeanoFraction class for fraction number: "4/5".
+    
+    numerator can be less (<) than 0 and more (>) than zero
+        and if numerator zero fraction is zero
+    
+    denominator can't be less (<) than 0 and be zero
+    
+    IntegerNumber can be < 0 > and be 0 
+    PeanoNumber can't be < 0 
+        but can be 0 it's problem can solution in class constructor 
+    
+
+    PeanoFraction structure
+        numerator : IntegerNumber
+        denominator : PeanoNumber
+    
+    PeanoFraction methods:
+        sum
+        diff
+        multiply
+        division
+        
+        sum
+            for since check for zero numerators of two numbers
+            after arg check we calc global denominator
+            after by global providing we calc numerators
+            after sum numerators
+        diff
+            for since check for zero numerators of two numbers
+            after arg check we calc global denominator
+            after by global providing we calc numerators
+            after diff numerators
+        multiply
+            for since check for zero numerators of two numbers 
+                and if on of numbers zero results zero
+            after arg check
+            first fraction numerator multiply to second fraction numerator
+            first fraction denominator multiply to second fraction denominator
+        division
+            for since check for zero numerators of two numbers 
+                and if on of numbers zero results zero
+            reverse value of second fraction 
+                (numerator to denominator, denominator to numerator)
+            
+"""
 
 class PeanoFraction:
     numerator: IntegerNumber
@@ -20,7 +67,7 @@ class PeanoFraction:
     def __str__(self):
         return f"numerator : {self.numerator}/ denominator {self.denominator}"
 
-    def sum(self, additive): # TODO Reorganization your idea and made sum of PeanoFraction :: last problem !! global_denominator and denominator of self equals
+    def sum(self, additive):
 
         if self.numerator.number == additive.numerator.number and self.numerator.number == ["զրոյ"]:
             return ["զրոյ"]
@@ -64,7 +111,7 @@ class PeanoFraction:
 
         return self
 
-    def diff(self, additive): # TODO Reorganization your idea and made sum of PeanoFraction :: last problem !! global_denominator and denominator of self equals
+    def diff(self, additive):
 
         if self.numerator.number == additive.numerator.number and self.numerator.number == ["զրոյ"]:
             return ["զրոյ"]

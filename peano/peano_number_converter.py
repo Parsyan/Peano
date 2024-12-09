@@ -1,9 +1,29 @@
 import copy
 
 from peano.integer_number import IntegerNumber
-from peano.peano_fracton import PeanoFraction
+from peano.peano_fraction import PeanoFraction
 from peano.peano_number import PeanoNumber
 
+"""
+    PeanoNumberConverter class for work with custom creating numbers how:
+        PeanoNumber class for natural numbers in peano/peano/peano_number.py
+        IntegerNumber class for integer numbers in peano/peano/integer_number.py
+        PeanoFraction class for fraction numbers in peano/peano/peano_fraction.py
+    In PeanoNumberConverter is located 4 methods
+        str_to_fraction arg syntax must be like this :"1/3" 
+        str_to_int arg syntax must be like this : "5", "-4"
+        str_to_num_peano arg syntax must be like this : "8" and can't be < 0 
+        
+        check_digit arg str len == 1 and get in dict by key "0" -> "զրոյ"
+        
+        str_to_fraction give "2/4" by example divide to ["2", "4"] and convert for numerator and denominator
+        denominator can't be zero 
+        
+        str_to_int "554" -> (("5" -> check_digit) * 10 + ("5" -> check_digit)) * 10 + ("4" -> check_digit) 
+        str_to_num_peano work like str_to_int but save since "-" how "բացասական"
+        
+
+"""
 
 class PeanoNumberConverter:
 
@@ -20,7 +40,7 @@ class PeanoNumberConverter:
         "9": ["յաջորդ", "յաջորդ", "յաջորդ", "յաջորդ", "յաջորդ", "յաջորդ", "յաջորդ", "յաջորդ", "յաջորդ", "զրոյ"]
     }
 
-    def fraction_to_int(self, str_num : str):
+    def str_to_fraction(self, str_num : str):
 
         fraction_mini = str_num.split("/")
         fraction = PeanoFraction(

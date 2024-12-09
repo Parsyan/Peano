@@ -2,6 +2,96 @@ import copy
 
 from peano.peano_number import PeanoNumber
 
+"""
+
+    IntegerNumber class for integer number: 0 < number > 0 
+    It's extended PeanoNumber class and overrides it's methods
+    
+    In IntegerNumber
+     is located 5 functions:
+            sum 
+            diff
+            multiply
+            integer_division
+            division_with_remainder
+
+    Arg of functions can be list[str], PeanoNumber and IntegerNumber.(PeanoNumber and IntegerNumber be converted to list)
+
+    sum is remove from additive "զրոյ" 
+      and 
+        if all two numbers are > 0: by count of list add in self.number in PeanoNumber "յաջորդ",
+        if all two numbers are > 0: save "-" how "բացասական", 
+            after by count of list add in self.number in PeanoNumber "յաջորդ" and add "բացասական" in result
+        else:
+            is_first_minus : bool type
+            if "բացասական" in first num
+                delete "բացասական"
+                is_first_minus = True
+            else 
+                delete "բացասական"
+                is_first_minus = False
+                
+            if first num > second num 
+                first num diff to second num 
+                if is_first_minus == True # only is_first_minus equal to this condition
+                    add "բացասական" in first num
+            if first num < second num
+                second num diff to first num
+                if is_first_minus == False 
+                    add "բացասական" in second num
+        
+    diff 
+      if first num > 0 and second num < 0 will be sum first num and second num absolute value
+      
+      if first num > 0 and second num > 0 will be diff first num and second num absolute value
+      
+      if first num < 0 and second num > 0 will be sum first num and second num absolute value 
+        and added "բացասական" in result
+        
+      if first num < 0 and second num < 0: 
+        if first num > second num will be diff to second num and added "բացասական" in result
+        if first num < second num will be diff to first num
+
+
+    multiply 
+        if first num > 0 and second num > 0 will be first num multiply to second num
+        if first num < 0 and second num < 0 will be deleted "բացասական" in all two numbers and
+         first num multiply to second num
+        else
+            if first num < 0 will be deleted "բացասական" in first_num
+            if second num < 0 will be deleted "բացասական" in second num
+            after will be first num multiply to second num
+            and in the result added "բացասական"
+        
+
+    integer_division ##Descryption: division method likes multiply method 
+      if first num > 0 and second num > 0 result will be > 0 
+      if first num < 0 and second num < 0 result will be > 0
+      else 
+        if first num < 0 or second num < 0 result will be < 0
+          
+    division_with_remainder 
+      if first num > 0 result will be > 0
+      if first num < 0 result will be < 0
+      
+      # How is that possible? 
+      # 4 / 3 = 1 (1) 4 = 3 * 1 + 1
+      # if remainder be > 0 when 4 < 0 
+      # -4 / 3 = -1 (1) 
+      # -4 != 3 * (-1) + 1 = 2
+      # -4 = 3 * (-1) - 1   
+
+Description: if you want know how realized 
+    sum, diff, multiply, integer_division and division_with_remainder
+    you can check peano/peano/peano_number.py file
+
+Description: __str__ method realized in PeanoNumber and
+ when IntegerNumber extend PeanoNumber it give and __str__ method also.
+ Because of it in this code that's method not realized.
+
+
+"""
+
 
 class IntegerNumber(PeanoNumber):
     number: list[str] = []
@@ -37,54 +127,43 @@ class IntegerNumber(PeanoNumber):
 
         else:
 
-            if len(self.number) > len(additive):  # TODO check on Vahagn's lesson check operator
+            first_num_is_minus: bool
 
-                if "բացասական" in self.number:
-                    self.number.pop(self.number.index("բացասական"))
+            if "զրոյ" in self.number:
+                self.number.pop(self.number.index("զրոյ"))
 
-                    peano_num = PeanoNumber(self.number.copy())
+            if "բացասական" in self.number:
+                self.number.pop(self.number.index("բացասական"))
+                first_num_is_minus = True
+            else:
+                additive.pop(additive.index("բացասական"))
+                first_num_is_minus = False
 
-                    peano_num.diff(additive)
-                    self.number = peano_num.number.copy()
+            if len(self.number) > len(additive):
 
+                peano_num = PeanoNumber(self.number.copy())
+
+                peano_num.diff(additive)
+                self.number = peano_num.number.copy()
+
+                if first_num_is_minus:
                     self.number.insert(0, "բացասական")
 
-                else:
-                    additive.pop(additive.index("բացասական"))
+            elif len(self.number) < len(additive):
 
-                    peano_num = PeanoNumber(self.number.copy())
-                    peano_num.diff(additive)
+                    peano_num = PeanoNumber(additive.copy())
 
-                    self.number = peano_num.number.copy()
+                    peano_num.diff(self.number.copy())
+
+                    additive = peano_num.number.copy()
+
+                    if not first_num_is_minus:
+                        additive.insert(0, "բացասական")
+
+                    self.number = additive.copy()
 
 
-
-
-            elif len(self.number) < len(additive):  # TODO check on Vahagn's lesson check operator
-
-                first_num_is_minus: bool
-
-                if "բացասական" in additive:
-                    additive.pop(additive.index("բացասական"))
-                    first_num_is_minus = True
-
-                else:
-                    if "բացասական" in additive:
-                        additive.pop(additive.index("բացասական"))
-                    first_num_is_minus = False
-
-                additive.append("զրոյ")
-
-                for i in self.number:
-                    additive.pop()
-
-                additive.insert(0, minus)
-                self.number = additive.copy()
-
-                if not first_num_is_minus:
-                    self.number.insert(0, "բացասական")
-
-            elif len(self.number) == len(additive):  # TODO check on Vahagn's lesson check operator
+            elif len(self.number) == len(additive):
                 self.number = ["զրոյ"]
 
         return self.number
@@ -101,13 +180,13 @@ class IntegerNumber(PeanoNumber):
 
         if not "բացասական" in self.number and not "բացասական" in removable:
 
-            if len(self.number) > len(removable):  # TODO check on Vahagn's lesson check operator
+            if len(self.number) > len(removable):
 
                 for i in removable:
                     self.number.pop()
                 self.number.append("զրոյ")
 
-            elif len(self.number) < len(removable):  # TODO check on Vahagn's lesson check operator
+            elif len(self.number) < len(removable):
                 minus = "բացասական"
                 for i in self.number:
                     removable.pop()
@@ -154,10 +233,12 @@ class IntegerNumber(PeanoNumber):
             peano_num = PeanoNumber(self.number.copy())
             peano_num = peano_num.multiply(multiple)
             self.number = peano_num.copy()
+
         elif not "բացասական" in self.number and not "բացասական" in multiple:
             peano_num = PeanoNumber(self.number.copy())
             peano_num = peano_num.multiply(multiple)
             self.number = peano_num.copy()
+
         else:
             if "բացասական" in self.number:
                 self.number.pop(self.number.index("բացասական"))

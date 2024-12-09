@@ -1,8 +1,39 @@
 import copy
 
+"""
+
+    PeanoNumber class for natural number class: number > 0 
+    and can't give: number < 0
+    
+    In PeanoNumber is located 5 functions:
+            sum 
+            diff
+            multiply
+            integer_division
+            division_with_remainder
+            
+    Arg of functions can be list[str], PeanoNumber and IntegerNumber.(PeanoNumber and IntegerNumber be converted to list)
+    
+    sum is remove from additive "զրոյ" and by count of list add in self.number in PeanoNumber "յաջորդ"
+    
+    diff is remove from removable and self.number "զրոյ"
+      and by count of list remove in self.number of PeanoNumber "յաջորդ" of end in self.number be added "զրոյ"․
+      It's functions can't calc if first number(self.number) fewer (<) than second number (additive)
+    
+    multiply is remove from multiple "զրոյ", create new number with 0 value 
+      and sum number with self.number:(for reference error it is copy in other variable) 
+      by multiple length's counts.
+    
+    integer_division 
+      diff to divisor while self.number > divisor and added in other variable counts of diff
+      and return counts of diffs
+    division_with_remainder 
+      diff to divisor while self.number > divisor and return remainder of self.number after all diffs
+    
+    
+"""
 
 class PeanoNumber:
-    log = False
     number: list[str] = []
 
     def __init__(self, number: list[str]):
@@ -17,8 +48,6 @@ class PeanoNumber:
         if "զրոյ" in additive:
             additive.pop(additive.index("զրոյ"))
 
-        if self.log:
-            print(" Starting Sum ")
 
         for i in additive:
             self.number.insert(0, i)
@@ -59,6 +88,7 @@ class PeanoNumber:
 
         for i in multiple:
             number_peano_one.sum(num_mult)
+
         if not "զրոյ" in number_peano_one.number:
             number_peano_one.number.append("զրոյ")
 
